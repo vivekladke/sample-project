@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Care-Groove</title>
+    </head>
+
+    <body>
+        <h1>Welecome To Care-Groove</h1>
+        <a href="/users/register/">Register Here</a>
+    </body>
+</html>

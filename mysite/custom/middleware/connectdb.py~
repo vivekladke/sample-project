@@ -1,0 +1,25 @@
+from core.models import DbRouting
+from django.conf import settings
+
+class RequestDB(object):
+    def process_request(self,request):
+        print "Host"
+        host_str = request.get_host()
+        host_str = host_str.split(':')
+        print host_str[0]
+        try:
+            host_list = DbRouting.objects.get(host_name=host_str[0])
+        except Exception:
+            host_list = None
+        
+        if host_list :
+            print host_list
+        
+        settings.DATABASES['default']['NAME']= 'testmdb1'
+        settings.DATABASES['default']['USER']= 'neha'
+        settings.DATABASES['default']['PASSWORD']= 'neha'
+        settings.DATABASES['default']['HOST']= 'host1'
+        settings.DATABASES['default']['PORT']= '5432'
+
+
+        return None
