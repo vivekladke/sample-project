@@ -68,7 +68,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
-    "constance.context_processors.config",
 )
 
 
@@ -113,6 +112,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+#DATABASE_ROUTERS = ['custommiddleware.router.router',]
 
 # Internationalization
 
