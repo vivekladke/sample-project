@@ -1,0 +1,16 @@
+venv
+*.pyc
+bin/*
+lib/*
+local/*
+include/*
+*~
+*#
+#*
+celerybeat-schedule
+.DS_Store
+build/*
+.#*
+.Python
+local_settings.py
+.idea
