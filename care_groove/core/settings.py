@@ -68,9 +68,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
-    "constance.context_processors.config",
 )
-
 
 
 # Application definition
@@ -84,7 +82,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'core',
     'custommiddleware',
+    'user',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -106,12 +106,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'care_groove_db',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
+        'NAME': 'caredb',
+        'USER': 'sarupsikha',
+        'PASSWORD': 'sikha',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-    }
+    },
+    'user': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'caredb_user',
+        'USER': 'sarupsikha',
+        'PASSWORD': 'sikha',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+
+}
 }
 
 # Internationalization
@@ -125,3 +134,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# URL of the login page.
+LOGIN_URL = '/login/'
