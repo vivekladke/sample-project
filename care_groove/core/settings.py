@@ -5,7 +5,7 @@ PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 RESOURCE_DIR = os.path.abspath(os.path.join(PROJECT_DIR, "..", "resources"))
 
 ADMINS = (
-# ('Your Name', 'your_email@example.com'),
+    # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -93,7 +93,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'custommiddleware.middleware.host_middleware',
+    'custommiddleware.middleware.RequestDB',
 )
 
 ROOT_URLCONF = 'core.urls'
@@ -117,11 +117,15 @@ DATABASES = {
         'NAME': 'caredb_user',
         'USER': 'sarupsikha',
         'PASSWORD': 'sikha',
-        'HOST': '127.0.0.1',
+        'HOST': '',
         'PORT': '5432',
 
+    }
 }
-}
+
+
+DATABASE_ROUTERS = ['core.router.Database_Router']
+
 
 # Internationalization
 

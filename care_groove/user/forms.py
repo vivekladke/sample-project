@@ -1,11 +1,27 @@
-from django import forms
-from models import User
 from django.contrib import admin
+from django import forms
+from user.models import UserLoginProfile, User
+from django.contrib.auth.models import User
 
 
 class UserForm(forms.ModelForm):
-    """A form for creating new users. Includes all the required
-    fields, plus a repeated password."""
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password')
+
+
+class UserLoginProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserLoginProfile
+        fields = ('mobileNumber', )
+
+
+"""
+class UserForm(forms.ModelForm):
+    """ """A form for creating new users. Includes all the required
+    fields, plus a repeated password.""" """
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation',
                                 widget=forms.PasswordInput)
@@ -29,3 +45,4 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+"""

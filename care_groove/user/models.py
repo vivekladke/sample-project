@@ -1,12 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class DbRouting(models.Model):
-    db_name = models.CharField(max_length=100)
-    user_name = models.CharField(max_length=200)
-    password = models.CharField(max_length=50)
-    host_name = models.CharField(max_length=200)
-    port = models.CharField(max_length=4)
 
-    '''def __unicode__(self):
-        return self.db_name
-    '''
+# User Login Information Table
+class UserLoginProfile(models.Model):
+    # Links UserLoginProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The adding Mobile Numbaer
+    mobileNumber = models.CharField(max_length=10)
+
+    # Adding fields to maintain user logs
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(blank=True, null=True,
+                                      default=None, db_index=True)
+    deleted_on = models.DateTimeField(blank=True, null=True,
+                                      default=None, db_index=True)

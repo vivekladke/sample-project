@@ -1,5 +1,6 @@
 from django.contrib import admin
-from core.models import DbRouting
 
-admin.site.register(DbRouting)
+from user.models import UserLoginProfile
 
+
+admin.site.register(UserLoginProfile)

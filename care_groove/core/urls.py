@@ -5,8 +5,8 @@ from django.conf import settings
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', 'core.views.home', name='home'),
+urlpatterns = patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user/', include('user.urls')),
 )

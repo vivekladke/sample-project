@@ -12,7 +12,7 @@
 	{% else %}
 	      <h1>Care-Groove says... hello world!</h1>
 	{% endif %}
-        <a href="/users/register/">Register Here</a>
-	<a href="/users/login/">Login</a>
+        <a href="{% url 'register' %}">Register Here</a>
+	<a href="{% url 'login' %}">Login</a>
     </body>
 </html>
