@@ -1,9 +1,8 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 from users.forms import UserForm, UserLoginProfileForm
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.contrib.auth import logout
+from django.http import HttpResponseRedirect, HttpResponse
 
 
 # View for index page
@@ -11,11 +10,10 @@ def index(request):
     context = RequestContext(request)
     return render_to_response('users/index.html',{}, context)
 
-
 # View for Register page
 def register(request):
     context = RequestContext(request)
-
+ 
     # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
@@ -42,7 +40,7 @@ def register(request):
             # This delays saving the model until we're ready to avoid integrity problems.
             profile = profile_form.save(commit=False)
             profile.user = user
-
+            
             # Now we save the UserProfile model instance.
             profile.save()
 
@@ -66,8 +64,6 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
-
-"""
 def user_login(request):
     context = RequestContext(request)
 
@@ -106,16 +102,3 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('users/login.html', {}, context)
-"""
-
-
-def logout_page(request):
-    """
-    Log users out and re-direct them to the main page.
-    """
-    logout(request)
-    return HttpResponseRedirect('/')
-
-
-def bye(request):
-    return HttpResponse("bye bye")
