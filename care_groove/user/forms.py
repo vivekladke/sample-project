@@ -1,22 +1,22 @@
 from django.contrib import admin
 from django import forms
-from user.models import UserLoginProfile, User
-from django.contrib.auth.models import User
+from user import models as user_models
+#from django.contrib.auth.models import User
 
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password')
+        model = user_models.CareGrooveUser
+        fields = ('name', 'email', 'password')
 
-
+'''
 class UserLoginProfileForm(forms.ModelForm):
     class Meta:
         model = UserLoginProfile
         fields = ('mobileNumber', )
-
+'''
 
 """
 class UserForm(forms.ModelForm):

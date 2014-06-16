@@ -26,10 +26,9 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = user_forms.UserForm(data=request.POST)
-        profile_form = user_forms.UserLoginProfileForm(data=request.POST)
 
         # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save(commit=False)
 
@@ -45,16 +44,6 @@ def register(request):
             This delays saving the model until we're ready to avoid
             integrity problems.
             """
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            # Now we save the UserProfile model instance.
-            profile.save()
-
-            """
-            Update our variable to tell the template registration
-            was successful.
-            """
 
             registered = True
 
@@ -62,17 +51,16 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print user_form.errors, profile_form.errors
+            print user_form.errors,
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
     else:
         user_form = user_forms.UserForm()
-        profile_form = user_forms.UserLoginProfileForm()
+        #profile_form = user_forms.UserLoginProfileForm()
 
     # Render the template depending on the context.
     return render(request, 'register.html', {'user_form': user_form,
-                                             'profile_form': profile_form,
                                              'registered': registered})
 
 

@@ -114,10 +114,10 @@ DATABASES = {
     },
     'user': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': 'client1',
+        'USER': 'vivek',
+        'PASSWORD': 'vivek',
+        'HOST': 'host1',
         'PORT': '5432',
 
     }
@@ -142,3 +142,5 @@ USE_TZ = True
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = ''
+
+AUTH_USER_MODEL = 'user.CareGrooveUser'

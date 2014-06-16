@@ -1,7 +1,8 @@
-from django.db import models
+from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
+from django.db import models
 
-
+'''
 # User Login Information Table
 class UserLoginProfile(models.Model):
     # Links UserLoginProfile to a User model instance.
@@ -16,9 +17,8 @@ class UserLoginProfile(models.Model):
                                       default=None, db_index=True)
     deleted_on = models.DateTimeField(blank=True, null=True,
                                       default=None, db_index=True)
-
-
 '''
+
 from django_extensions.db.fields import UUIDField
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -89,4 +89,3 @@ class CareGrooveUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.name.split(" ")[0] if self.name else None
-'''
