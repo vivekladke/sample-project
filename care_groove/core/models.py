@@ -7,7 +7,3 @@ class DbRouting(models.Model):
     password = models.CharField(max_length=50)
     host_name = models.CharField(max_length=200)
     port = models.CharField(max_length=4)
-
-    '''def __unicode__(self):
-        return self.db_name
-    '''
