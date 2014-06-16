@@ -6,6 +6,9 @@ from django.contrib.auth import (authenticate,
 from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
 
+def home(request):
+    return render_to_response('index.html')
+
 # View for Register page
 def register(request):
     """
@@ -16,6 +19,7 @@ def register(request):
     """
 
     registered = False
+
 
     # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
@@ -63,14 +67,13 @@ def register(request):
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
     else:
-        user_form = UserForm()
-        profile_form = UserLoginProfileForm()
+        user_form = user_forms.UserForm()
+        profile_form = user_forms.UserLoginProfileForm()
 
     # Render the template depending on the context.
-    return render_to_response('register.html',
-                              {'user_form': user_form,
-                               'profile_form': profile_form,
-                               'registered': registered})
+    return render(request, 'register.html', {'user_form': user_form,
+                                             'profile_form': profile_form,
+                                             'registered': registered})
 
 
 def logout_page(request):

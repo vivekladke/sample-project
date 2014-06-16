@@ -123,7 +123,6 @@ DATABASES = {
     }
 }
 
-
 DATABASE_ROUTERS = ['core.router.Database_Router']
 
 
@@ -141,3 +140,5 @@ USE_TZ = True
 
 # URL of the login page.
 LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = ''
