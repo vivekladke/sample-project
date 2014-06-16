@@ -7,7 +7,7 @@ class UserLoginProfile(models.Model):
     # Links UserLoginProfile to a User model instance.
     user = models.OneToOneField(User)
 
-    # The adding Mobile Numbaer
+    # The adding Mobile Number
     mobileNumber = models.CharField(max_length=10)
 
     # Adding fields to maintain user logs

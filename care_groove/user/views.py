@@ -1,20 +1,13 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from user.forms import UserForm, UserLoginProfileForm
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.http import (HttpResponseRedirect,
+                         HttpResponse)
+from user import forms as user_forms
+from django.contrib.auth import (authenticate,
+                                 login)
+from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
-
-
-def home(request):
-    context = RequestContext(request)
-    return render_to_response('index.html', {}, context)
-
 
 # View for Register page
 def register(request):
-    context = RequestContext(request)
-
     """
     A boolean value for telling the template
     whether the registration was successful.
@@ -28,13 +21,13 @@ def register(request):
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
-        user_form = UserForm(data=request.POST)
-        profile_form = UserLoginProfileForm(data=request.POST)
+        user_form = user_forms.UserForm(data=request.POST)
+        profile_form = user_forms.UserLoginProfileForm(data=request.POST)
 
         # If the two forms are valid...
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
-            user = user_form.save()
+            user = user_form.save(commit=False)
 
             # Now we hash the password with the set_password method.
             # Once hashed, we can update the user object.
@@ -77,7 +70,7 @@ def register(request):
     return render_to_response('register.html',
                               {'user_form': user_form,
                                'profile_form': profile_form,
-                               'registered': registered}, context)
+                               'registered': registered})
 
 
 def logout_page(request):

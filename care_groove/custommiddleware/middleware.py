@@ -1,30 +1,19 @@
-from core.models import DbRouting
+from django.http import Http404
+from core import models as core_models
 from django.conf import settings
 
 
-class RequestDB(object):
+class host_middleware(object):
     def process_request(self, request):
-        print "Host"
-        host_str = request.get_host()
-        host_str = host_str.split(':')
-        print host_str[0]
-        try:
-            host_list = DbRouting.objects.get(host_name=host_str[0])
-        except Exception:
-            host_list = None
-
-        if host_list:
-            print "DataBase Name : " + host_list.db_name
-            print "User Name : " + host_list.user_name
-            print "Password Name :" + host_list.password
-            print "Port :" + host_list.port
-            settings.DATABASES['user']['NAME'] = host_list.db_name
-            settings.DATABASES['user']['USER'] = host_list.user_name
-            settings.DATABASES['user']['PASSWORD'] = host_list.password
-            settings.DATABASES['user']['HOST'] = host_list.host_name
-            settings.DATABASES['user']['PORT'] = host_list.port
-
-            if all_obj_list:
-                print all_obj_list
-
+        if not core_models.HostDetails.objects.filter(
+                host_name = request.get_host().split(":")[0]).exists():
+            raise Http404
+        else:
+            host = core_models.HostDetails.objects.filter(
+                host_name = request.get_host().split(":")[0])
+            settings.DATABASES['user']['NAME'] = host[0].database_name
+            settings.DATABASES['user']['USER'] = host[0].user_name
+            settings.DATABASES['user']['PASSWORD'] = host[0].password
+            settings.DATABASES['user']['HOST'] = host[0].host_name
+            settings.DATABASES['user']['PORT'] = host[0].port
         return None
