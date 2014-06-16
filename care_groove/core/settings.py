@@ -110,10 +110,18 @@ DATABASES = {
         'PASSWORD': 'vivek',
         'HOST': '127.0.0.1',
         'PORT': '5432',
-    }
+    },
+    'user': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5432',
+    },
 }
 
-#DATABASE_ROUTERS = ['custommiddleware.router.router',]
+DATABASE_ROUTERS = ['custommiddleware.router.routers',]
 
 # Internationalization
 
