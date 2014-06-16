@@ -1,9 +1,11 @@
-from django.db import models
+from django_extensions.db.fields import UUIDField
 from django.contrib.auth.models import User
+from django.db import models
 
 
 # User Login Information Table
 class UserLoginProfile(models.Model):
+    id = UUIDField(version=4, primary_key=True)
     # Links UserLoginProfile to a User model instance.
     user = models.OneToOneField(User)
 
