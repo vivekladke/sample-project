@@ -93,7 +93,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'custommiddleware.middleware.RequestDB',
+    'custommiddleware.middleware.host_middleware',
 )
 
 ROOT_URLCONF = 'core.urls'
@@ -106,23 +106,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'caredb',
-        'USER': 'sarupsikha',
-        'PASSWORD': 'sikha',
+        'NAME': 'care_groove_db',
+        'USER': 'vivek',
+        'PASSWORD': 'vivek',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     },
     'user': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'caredb_user',
-        'USER': 'sarupsikha',
-        'PASSWORD': 'sikha',
-        'HOST': '',
+        'NAME': 'client1',
+        'USER': 'vivek',
+        'PASSWORD': 'vivek',
+        'HOST': 'host1',
         'PORT': '5432',
 
     }
 }
-
 
 DATABASE_ROUTERS = ['core.router.Database_Router']
 
@@ -141,3 +140,7 @@ USE_TZ = True
 
 # URL of the login page.
 LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = ''
+
+AUTH_USER_MODEL = 'user.CareGrooveUser'

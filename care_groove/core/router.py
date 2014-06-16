@@ -1,4 +1,4 @@
-# This class will takes care of DB Routing for master and user routing
+# This class will takes care of Database Routing for master and user routing
 
 
 class Database_Router(object):

@@ -1,4 +1,4 @@
 from django.contrib import admin
-from core.models import DbRouting
+from core.models import HostDetails
 
-admin.site.register(DbRouting)
+admin.site.register(HostDetails)
