@@ -6,6 +6,7 @@ from django.contrib.auth import (authenticate,
 from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
 
+
 def home(request):
     return render_to_response('index.html')
 
