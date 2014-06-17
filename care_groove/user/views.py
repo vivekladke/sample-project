@@ -73,4 +73,4 @@ def logout_page(request):
 
 
 def bye(request):
-    return HttpResponse("bye bye")
+    return render_to_response('index.html')

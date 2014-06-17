@@ -74,12 +74,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     'core',
     'custommiddleware',
     'user',
@@ -140,6 +140,8 @@ USE_TZ = True
 # URL of the login page.
 LOGIN_URL = '/login/'
 
-#LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_URL ='/logout/'
 
 AUTH_USER_MODEL = 'user.CareGrooveUser'
