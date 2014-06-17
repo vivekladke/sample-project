@@ -6,9 +6,8 @@
 
     <body>
         <h1>Welecome To Care-Groove</h1>
-
 	{% if user.is_authenticated %}
-	      <h1>Care-Groove says... hello {{ user.username }}!</h1>
+	      <h1>Care-Groove says... hello {{ user.name }}!</h1>
 	{% else %}
 	      <h1>Care-Groove says... hello world!</h1>
 	{% endif %}

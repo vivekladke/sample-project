@@ -21,7 +21,6 @@ def register(request):
 
     registered = False
 
-
     # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
