@@ -106,20 +106,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'care_groove_db',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
+        'NAME': 'caredb',
+        'USER': 'sarupsikha',
+        'PASSWORD': 'sikha',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     },
     'user': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'client1',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
-        'HOST': 'host1',
-        'PORT': '5432',
-
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -141,6 +140,6 @@ USE_TZ = True
 # URL of the login page.
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = ''
+#LOGIN_REDIRECT_URL = ''
 
 AUTH_USER_MODEL = 'user.CareGrooveUser'
