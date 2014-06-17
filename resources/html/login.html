@@ -6,19 +6,39 @@
     </head>
 
     <body>
-        <h1>Register with Care-Groove..</h1>
+        <h1>Login with Care-Groove..</h1>
 
-        <form id="login_form" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-            {% csrf_token %}
-	    {{form}}
-	    <!--
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
-	    -->
-            <input type="submit" value="submit" />
-	    <input type="hidden" name="next" value="{{ next }}" />
+	<form class="form-horizontal" action="{% url 'django.contrib.auth.views.login' %}" method="post" id="login_form" >
+	  <!-- Login form starts -->
+          {% csrf_token%}
+          {% for f in form %}
+          <div class="control-group {% if f.errors %}error{% endif %}">
+	    <label class="control-label" for="inputUserName">{{ f.label }}</label>
+	    <div class="controls">
+	      {{ f }}
+	      {% for e in f.errors %}
+	      <span class="help-inline">{{ e }}</span>
+	      {% endfor %}
+	    </div>
+	  </div>
+	  {% endfor %}
+
+          <div class="control-group">
+            <div class="controls">
+              <br>
+	      <button type="submit" class="btn">Login</button>
+	      <input type="reset" class="btn" value="Reset"/>
+	    </div>
+	  </div>
+
+	  <input type="hidden" name="next" value="{{ next }}" />
+	  {% if form.non_field_errors %}
+	  <div class="center control-group error">
+	    {% for e in form.non_field_errors %}
+	    <span class="help-inline">{{ e }}</span>
+	    {% endfor %}
+	  </div>
+	  {% endif %}
         </form>
 
     </body>

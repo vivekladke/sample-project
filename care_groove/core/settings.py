@@ -74,12 +74,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     'core',
     'custommiddleware',
     'user',
@@ -114,12 +114,11 @@ DATABASES = {
     },
     'user': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'client1',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
-        'HOST': 'host1',
-        'PORT': '5432',
-
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 

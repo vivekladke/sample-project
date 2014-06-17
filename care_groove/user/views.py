@@ -7,8 +7,11 @@ from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
 
 
-#def home(request):
-#    return render_to_response('index.html')
+'''
+def home(request):
+    print request.user
+    return render_to_response('index.html')
+'''
 
 # View for Register page
 def register(request):
@@ -63,7 +66,6 @@ def register(request):
     return render(request, 'register.html', {'user_form': user_form,
                                              'registered': registered})
 
-
 def logout_page(request):
     """
     Log users out and re-direct them to the main page.
@@ -73,4 +75,4 @@ def logout_page(request):
 
 
 def bye(request):
-    return HttpResponse("bye bye")
+    return render_to_response('index.html')

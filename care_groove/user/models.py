@@ -1,3 +1,4 @@
+from django_extensions.db.fields import UUIDField
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.db import models
@@ -5,6 +6,7 @@ from django.db import models
 '''
 # User Login Information Table
 class UserLoginProfile(models.Model):
+    id = UUIDField(version=4, primary_key=True)
     # Links UserLoginProfile to a User model instance.
     user = models.OneToOneField(User)
 
@@ -19,7 +21,6 @@ class UserLoginProfile(models.Model):
                                       default=None, db_index=True)
 '''
 
-from django_extensions.db.fields import UUIDField
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
