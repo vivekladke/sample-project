@@ -107,17 +107,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'care_groove_db',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
+        'USER': 'neha',
+        'PASSWORD': 'neha',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     },
     'user': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'client1',
-        'USER': 'vivek',
-        'PASSWORD': 'vivek',
-        'HOST': 'host1',
+        'NAME': 'client2',
+        'USER': 'neha2',
+        'PASSWORD': 'neha2',
+        'HOST': 'host2',
         'PORT': '5432',
 
     }

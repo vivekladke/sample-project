@@ -5,7 +5,7 @@ from django.contrib.auth import (authenticate,
                                  login)
 from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
-
+#from django.template import RequestContext
 
 def home(request):
     return render_to_response('index.html')
@@ -75,3 +75,4 @@ def logout_page(request):
 
 def bye(request):
     return HttpResponse("bye bye")
+

@@ -11,6 +11,8 @@ class UserForm(forms.ModelForm):
         model = user_models.CareGrooveUser
         fields = ('name', 'email', 'password')
 
+
+
 '''
 class UserLoginProfileForm(forms.ModelForm):
     class Meta:
@@ -46,3 +48,4 @@ class UserForm(forms.ModelForm):
             user.save()
         return user
 """
+
