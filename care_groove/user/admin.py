@@ -1,6 +1,4 @@
 from django.contrib import admin
+from user.models import CareGrooveUser
 
-#from user.models import UserLoginProfile
-
-
-#admin.site.register(UserLoginProfile)
+admin.site.register(CareGrooveUser)
