@@ -13,18 +13,30 @@
         {% else %}
               <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/user/register/" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register" />
+	<form class="form-horizontal" id="user_form" method="post" action="/user/register/" enctype="multipart/form-data">
+	  <!-- Registration form starts -->
+          {% csrf_token%}
+          {% for f in user_form %}
+          <div class="control-group e_{{f.label|lower}}">
+	    <label class="control-label" for="inputUserName">{{ f.label }}</label>
+	    <div class="controls">
+	      {{ f }}
+	      <div class="error_{{f.label|lower}}"></div>
+	      {% for e in f.errors %}
+	      <span class="help-inline">{{ e }}</span>
+	      {% endfor %}
+	    </div>
+	  </div>
+	  {% endfor %}
+          <div class="control-group">
+            <div class="controls">
+              <br>
+	      <button type="submit" id="reg" class="btn submit" >Register</button>
+	      <button type="reset" class="btn" value="Reset" >Reset</button>
+	    </div>
+	  </div>
         </form>
+
         {% endif %}
     </body>
 </html>

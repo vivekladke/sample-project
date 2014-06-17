@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Care-Groove</title>
-    </head>
-
+  <head>
+    <title>Care-Groove</title>
+  </head>
     <body>
         <h1>Welecome To Care-Groove</h1>
 	{% if user.is_authenticated %}
 	      <h1>Care-Groove says... hello {{ user.name }}!</h1>
-              <a href="{% url 'register' %}">Register Here</a>
-	      <a href="{% url 'logout' %}">Log Out</a>
+	      <a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'home' %}">Log Out</a>
 	{% else %}
 	      <h1>Care-Groove says... hello world!</h1>
               <a href="{% url 'register' %}">Register Here</a>
-	      <a href="{% url 'login' %}">Login</a>
+	      <a href="{% url 'django.contrib.auth.views.login' %}?next={{request.path}}">Login</a>
 	{% endif %}
     </body>
 </html>

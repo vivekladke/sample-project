@@ -138,10 +138,8 @@ USE_L10N = True
 USE_TZ = True
 
 # URL of the login page.
-LOGIN_URL = '/login/'
+#LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = 'home'
-
-LOGOUT_URL ='/logout/'
+LOGIN_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'user.CareGrooveUser'

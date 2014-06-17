@@ -7,9 +7,11 @@ from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
 
 
+'''
 def home(request):
+    print request.user
     return render_to_response('index.html')
-
+'''
 
 # View for Register page
 def register(request):
