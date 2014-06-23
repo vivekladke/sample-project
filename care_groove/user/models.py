@@ -30,26 +30,26 @@ from django.db import models
 
 # Model for EmailUserManager:
 class EmailUserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, username, password=None, **extra_fields):
         """
         Creates and saves an EmailUser with the given email and password.
         """
         now = timezone.now()
-        if not email:
-            raise ValueError('The given email must be set')
-        email = EmailUserManager.normalize_email(email)
-        user = self.model(email=email, is_staff=False, is_active=True,
+        #if not email:
+        #    raise ValueError('The given email must be set')
+        #email = EmailUserManager.normalize_email(email)
+        user = self.model(username=username, is_staff=False, is_active=True,
                           is_superuser=False, last_login=now,
                           date_joined=now, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, username, password, **extra_fields):
         """
         Creates and saves a superuser with the given email and password.
         """
-        user = self.create_user(email, password, **extra_fields)
+        user = self.create_user(username, password, **extra_fields)
         user.is_staff = True
         user.is_active = True
         user.is_superuser = True
@@ -64,10 +64,11 @@ class CareGrooveUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = u'Customers'
 
     id = UUIDField(version=4, primary_key=True)
-    email = models.EmailField(max_length=254, unique=True,
+    email = models.EmailField(max_length=254,
                               verbose_name=_("Email"))
+    username = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=30, verbose_name=_("Full Name"))
-    is_staff = models.BooleanField(
+    is_staff = models.BooleanField( 
         default=False,
         help_text=_('Designates whether the user'
                     ' can log into this admin site.'),
@@ -80,9 +81,10 @@ class CareGrooveUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(
         default=timezone.now(),
         verbose_name=_("Date Joined"))
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', ]
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['name','email' ]
     objects = EmailUserManager()
+    #unique_together = ('id', 'email', 'served_by')
 
     def get_full_name(self):
         return self.name

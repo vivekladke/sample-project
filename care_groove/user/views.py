@@ -5,10 +5,18 @@ from django.contrib.auth import (authenticate,
                                  login)
 from django.shortcuts import render_to_response, render
 from django.contrib.auth import logout
-#from django.template import RequestContext
+from django.template import RequestContext
 
 def home(request):
-    return render_to_response('index.html')
+    context = RequestContext(request)
+    print context
+    print request.served_by_id
+    ser_id = request.served_by_id
+    return render_to_response('index.html', {'served_by_id'
+                                            :ser_id}, context)
+
+#served_by_id = request.served_by_id
+    
 
 # View for Register page
 def register(request):
@@ -26,17 +34,23 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = user_forms.UserForm(data=request.POST)
+        print "\nUserFormData : "
+        print user_form
+        
 
         # If the two forms are valid...
         if user_form.is_valid():
+            
             # Save the user's form data to the database.
             user = user_form.save(commit=False)
-
+            print "\nUser_email :"
+            print user.email
+            user.username = request.served_by_id + user.email
             # Now we hash the password with the set_password method.
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-
+            print "UserName :" + user.get_username()
             """
             Now sort out the UserProfile instance.
             Since we need to set the user attribute ourselves, we set
@@ -75,3 +89,20 @@ def logout_page(request):
 def bye(request):
     return HttpResponse("bye bye")
 
+def user_login(request):
+    username = request.POST.get('username','')
+    print "Login \nUserName before :" + username
+    username = request.served_by_id + username
+    print "Login \nUserName after :" + username
+    password = request.POST.get('password')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return HttpResponseRedirect('/user/')
+        else:
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        # Return an 'invalid login' error message.
+        return render(request,'login.html')

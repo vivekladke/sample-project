@@ -16,6 +16,7 @@ class HostDetails(models.Model):
     deleted_on = models.DateTimeField(blank=True, null=True, default=None,
     db_index=True)
     '''
+    id = UUIDField(version=4, primary_key=True)
     status = models.CharField(max_length=255, choices=STATUS_CHOICES,
                                       default='I')
     host_name = models.CharField(max_length=255)
